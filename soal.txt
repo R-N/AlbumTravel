@@ -1,0 +1,35 @@
+4.(5) album online
+   mau buat album,==>customer->bayar->upload->konformasi->export pdf->cetak->kirim->review. 
+   customer(daftar, beli, pilih paket, review)
+   percetakan(uploar harga, paket, dll, download pdf yang mau diprint, ambil uang)
+   travel agent(upload, dll)
+   customer_yang_sudah bayar (upload, dll)
+   admin(export pdf, approve pembayaran, dll, menugaskan percekatan album x ke percetakan y, pengiriman)
+
+rizqy nur,andre,ayun,rizki puji,indah
+
+login ke 
+sekolahq.id
+
+pakai putty
+
+user
+
+root
+
+pass
+
+www.gmail.com/OKE
+
+
+yg butuh domain sendiri, hubungi japri. 
+
+
+
+yg dikumpulkan
+
+1. laporan UTS
+
+2. Laporan UAS
+
+3. File hasil

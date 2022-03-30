@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			LAYOUT DANIA 2 SISI CETAK 15X-1
+		</title>
+		<link rel="stylesheet" type="text/css" href="general.css">
+		<style>
+			.my-body{
+				background-color: #3F4E3F;
+				background-image: none;
+				clip-path: none;
+			}
+			.layer{
+				position: absolute;
+				top:0;
+				width: 100%;
+				height: 100%;
+				border: none;
+				margin: 0;
+				padding: 0;
+			}
+			.layer-1{
+				clip-path: ellipse(120% 85% at 100% 22%);
+				shape-outside: ellipse(120% 85% at 100% 22%);
+				background-color: #83C442;
+				z-index: 0;
+			}
+			.layer-2{
+				clip-path: ellipse(120% 100% at 75% -4%);
+				shape-outside: ellipse(120% 100% at 75% -4%);
+				background-color: #3F4E3F;
+				z-index: 1;
+			}
+			.layer-3{
+				shape-outside: ellipse(110% 80% at 75% 14%);
+				clip-path: ellipse(110% 80% at 75% 14%);
+				background-color: #91C83F;
+				z-index: 2;
+			}
+			.layer-4{
+				shape-outside: ellipse(100% 90% at 40% -11%);
+				clip-path: ellipse(100% 90% at 40% -11%);
+				background-color: #AFD575;
+				z-index: 3;
+			}
+			.layer-5{
+				clip-path: ellipse(100% 120% at 40% -47%);
+				shape-outside: ellipse(100% 120% at 40% -47%);
+				background-color: #C5DF9B;
+				z-index: 4;
+			}
+			.layer-6{
+				clip-path: ellipse(120% 67% at 0% 4%);
+				shape-outside: ellipse(120% 67% at 0% 4%);
+				background-color: #3F4E3F;
+				z-index: 5;
+			}
+			.layer-7{
+				clip-path: ellipse(118.5% 65.5% at 0% 4%);
+				shape-outside: ellipse(118.5% 65.5% at 0% 4%);
+				background-color: #72B444;
+				z-index: 6;
+			}
+			.layer-8{
+				clip-path: ellipse(75% 65% at 50% 4%);
+				background-color: #3F4E3F;
+				z-index: 7;
+			}
+			.layer-9{
+				clip-path: ellipse(73.5% 63.5% at 50% 4%);
+				z-index: 8;
+			}
+			.layer-img{
+				height: 67%;
+				z-index: 9;
+				background-position: center top;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			.page-number{
+				position: absolute;
+				bottom: 48px;
+				width: 100%;
+				text-align: center;
+				z-index: 10;
+			}
+			.page-number-text{
+				border: 12px solid #3F4E3F;
+				color: #3F4E3F;
+				background-color: white;
+				border-radius: 25%;
+				width: auto;
+				font-size: 118px;
+				display: inline-block;
+				padding-left: 16px;
+				padding-right: 16px;
+				text-align: center;
+				z-index: 10;
+			}
+			.title-1{
+				position: absolute;
+				top: 60px;
+				left: 300px;
+				font-family: cursive;
+				color: #FFF000;
+				font-size: 230px;
+				text-shadow:
+				-6px -6px 2px #3F4F3F,
+				6px -6px 2px #3F4F3F,
+				-6px 6px 2px #3F4F3F,
+				6px 6px 2px #3F4F3F;  
+				z-index: 10;
+			}
+			.title-2-shadow{
+				position: absolute;
+				top: 270px;
+				left: 950px;
+				font-family: cursive;
+				font-size: 280px;
+				text-shadow:
+				-6px -6px 2px #3F4F3F,
+				6px -6px 2px #3F4F3F,
+				-6px 6px 2px #3F4F3F,
+				6px 6px 2px #3F4F3F;  
+				z-index: 10;
+			}
+			.title-2{
+				z-index: 11;
+				color: transparent;
+				text-shadow: none;
+				background-image: -webkit-linear-gradient(top, #F7AC1B, #FFD600);
+				background-image:    -moz-linear-gradient(top, #F7AC1B, #FFD600);
+				background-image:     -ms-linear-gradient(top, #F7AC1B, #FFD600);
+				background-image:      -o-linear-gradient(top, #F7AC1B, #FFD600);
+				background-image:         linear-gradient(to bottom, #F7AC1B, #FFD600);
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+			.badge{
+				border-left: 10px solid black;
+				border-bottom: 10px solid black;
+				border-bottom-left-radius: 16%;
+				border-bottom-right-radius: 16%;
+				background-color: white;
+				vertical-align: bottom;
+				position: absolute;
+				top: 0;
+				right: 100px;
+				width: 600px;
+				height: 660px;
+				z-index: 10;
+				text-align: center;
+			}
+			.badge-logo{
+				width: 520px;
+				vertical-align: bottom;
+				z-index: 10;
+				margin-top: 90px;
+			}
+			.date-div{
+				position: absolute;
+				top: 1570px;
+				left: 290px;
+				text-align: right;
+				z-index: 10;
+				text-shadow: -8px 6px 5px #444;
+			}
+			.date{
+				font-size: 90px;
+				color: white;
+				line-height: 60px;
+			}
+			.hashtag{
+				font-size: 80px;
+				color: white;
+			}
+			.img-div{
+				display: block;
+				clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+				margin: auto;
+				z-index: 11;
+			}
+			.img-div-border{
+				display: block;
+				clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+				border-radius: 10%;
+				position: absolute;
+				z-index: 10;
+				background-color: #3F4E3F;
+				border-radius: 25%;
+				text-align: center;
+				vertical-align: center;
+				padding: auto;
+			}
+			.img-div-big{
+				width: 93%;
+				height: 93%;
+				margin-top: 3.5%;
+			}
+			.img-div-big-border{
+				right: 40px;
+				top: 680px;
+				width: 1000px;
+				height: 1000px;
+			}
+			.img-div-medium{
+				width: 94%;
+				height: 94%;
+				margin-top: 3%;
+			}
+			.img-div-medium-border{
+				right: 800px;
+				top: 1060px;
+				width: 820px;
+				height: 820px;
+			}
+			.img-div-small{
+				width: 94%;
+				height: 94%;
+				margin-top: 3%;
+			}
+			.img-div-small-border{
+				right: 460px;
+				top: 1520px;
+				width: 640px;
+				height: 640px;
+			}
+			.cover-pattern{
+				position:absolute;
+				bottom: 0;
+				left: 0;
+				width: 560px;
+				z-index: 10;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="my-body">
+			<div class="layer layer-1">&nbsp;</div>
+			<div class="layer layer-2">&nbsp;</div>
+			<div class="layer layer-3">
+				<div class="layer layer-4">
+					<div class="layer layer-5">&nbsp;</div>
+				</div>
+				<div class="layer layer-6">
+					<div class="layer layer-7">
+						<div class="layer layer-8">
+							<div class="layer layer-9">
+								<div class="layer layer-img" style="background-image: url('../img/41.jpg')">
+									&nbsp;
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">
+				<div class="page-number-text">01</div>
+			</div>
+			<div class="title-1">Perjalanan Ibadah</div>
+			<div class="title-2-shadow">Umroh</div>
+			<div class="title-2-shadow title-2">Umroh</div>
+			<div class="badge">
+				<img src="Logo2.png" class="badge-logo">
+			</div>
+			<div class="date-div">
+				<div class="date"><b><i>28 Februari - 16 Maret 2019</i></b></div>
+				<div class="hashtag"><b><i>#ayokeMakkah</i></b></div>
+			</div>
+			<div class="img-div-border img-div-big-border">
+				<div class="img-div img-div-big" style="background-image: url('../img/02.jpg')">&nbsp;</div>
+			</div>
+			<div class="img-div-border img-div-medium-border">
+				<div class="img-div img-div-medium" style="background-image: url('../img/02.jpg')">&nbsp;</div>
+			</div>
+			<div class="img-div-border img-div-small-border">
+				<div class="img-div img-div-small" style="background-image: url('../img/02.jpg')">&nbsp;</div>
+			</div>
+			<img class="cover-pattern" src="cover-pattern.png">
+		</div>
+		<div class="my-body">
+			<div class="layer layer-1">&nbsp;</div>
+			<div class="layer layer-2">&nbsp;</div>
+			<div class="layer layer-3">
+				<div class="layer layer-4">
+					<div class="layer layer-5">&nbsp;</div>
+				</div>
+				<div class="layer layer-6">
+					<div class="layer layer-7">
+						<div class="layer layer-8">
+							<div class="layer layer-9">
+								<div class="layer layer-img" style="background-image: url('../img/41.jpg')">
+									&nbsp;
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-number">
+				<div class="page-number-text">01</div>
+			</div>
+			<div class="title-1">Perjalanan Ibadah</div>
+			<div class="title-2-shadow">Umroh</div>
+			<div class="title-2-shadow title-2">Umroh</div>
+			<div class="badge">
+				<img src="Logo2.png" class="badge-logo">
+			</div>
+			<div class="date-div">
+				<div class="date"><b><i>28 Februari - 16 Maret 2019</i></b></div>
+				<div class="hashtag"><b><i>#ayokeMakkah</i></b></div>
+			</div>
+			<div class="img-div-border img-div-big-border">
+				<div class="img-div img-div-big" style="background-image: url('../img/02.jpg')">&nbsp;</div>
+			</div>
+			<div class="img-div-border img-div-medium-border">
+				<div class="img-div img-div-medium" style="background-image: url('../img/02.jpg')">&nbsp;</div>
+			</div>
+			<div class="img-div-border img-div-small-border">
+				<div class="img-div img-div-small" style="background-image: url('../img/02.jpg')">&nbsp;</div>
+			</div>
+			<img class="cover-pattern" src="cover-pattern.png">
+		</div>
+		
+	</body>
+</html>

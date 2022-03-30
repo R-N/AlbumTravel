@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			LAYOUT DANIA 2 SISI CETAK 15X-5
+		</title>
+		<link rel="stylesheet" type="text/css" href="general.css">
+		<link rel="stylesheet" type="text/css" href="style1.css">
+		<style>
+			.main{
+				text-align:center;
+			}
+			.bg{
+				display:block;
+				position: absolute;
+				left: 0;
+				height: 100%;
+				width: 1920px;
+				background-color: #416541;
+				z-index: -1;
+				clip-path: polygon(0 0, 1350px 0, 100% 100%, 0 100%);
+			}
+			.bg:empty{
+				display:block;
+			}
+			.bg::after{
+				display:block;
+				content: " ";
+				position: absolute;
+				left: 0;
+				top:0;
+				height: 100%;
+				width: 1880px;
+				background-color: #91C83F;
+				clip-path: polygon(0 0, 1310px 0, 100% 100%, 0 100%);
+			}
+			.bg::after:empty{
+				display:block;
+			}
+			.big{
+				margin: 36px 70px 0 110px;
+				width: 2810px;
+				height: 1030px;
+				-webkit-box-shadow:10px 0 20px 8px #444444; 
+				-moz-box-shadow: 10px 0 20px 8px #444444; 
+				box-shadow:10px 0 20px 8px #444444;
+			}
+			.small{
+				display: inline-block;
+				border: 20px solid white;
+				width: 1005px;
+				height: 665px;
+				margin: 32px 140px 0 140px;
+			}
+			.small-left{
+				
+			}
+			.small-right{
+			}
+		</style>
+	</head>
+	<body>
+		<div class="my-body">
+			<div class="header">
+				<div class="top-right-box">&nbsp;</div>
+				<div class="date">
+					Keberangkatan 28 Februari - 16 Maret 2019
+				</div>
+				<hr class="header-line">
+			</div>
+			
+			<div class="main">
+				<div class="bg">
+				</div>
+				<img class="big" src="../img/41.jpg">
+				<img class="small small-left" src="../img/41.jpg">
+				<img class="small small-right" src="../img/41.jpg">
+			</div>
+			
+			<div class="footer">
+				<div class="footer-left">
+					<div class="footer-left-left">
+						<div class="footer-left-box">&nbsp;</div>
+						<div class="footer-left-box footer-left-box2">&nbsp;</div>
+						<div class="footer-left-text">
+							KEBERANGKATAN
+						</div>
+						<div class="footer-left-right footer-left-right3">&nbsp;</div>
+						<div class="footer-left-right footer-left-right2" >&nbsp;</div>
+						<div class="footer-left-right">&nbsp;</div>
+					</div>
+				</div>
+				<div class="footer-right">
+					<hr class="footer-line">
+					<div class="footer-right-text">
+						Menuju Kesempurnaan Ibadah
+					</div>
+				</div>
+				<div class="page-number"><span class="page-number-text">05</span></div>
+			</div>
+		</div>
+		
+		<div class="my-body">
+			<div class="header">
+				<div class="top-right-box">&nbsp;</div>
+				<div class="date">
+					Keberangkatan 28 Februari - 16 Maret 2019
+				</div>
+				<hr class="header-line">
+			</div>
+			
+			<div class="main">
+				<div class="bg">
+				</div>
+				<img class="big" src="../img/41.jpg">
+				<img class="small small-left" src="../img/41.jpg">
+				<img class="small small-right" src="../img/41.jpg">
+			</div>
+			
+			<div class="footer">
+				<div class="footer-left">
+					<div class="footer-left-left">
+						<div class="footer-left-box">&nbsp;</div>
+						<div class="footer-left-box footer-left-box2">&nbsp;</div>
+						<div class="footer-left-text">
+							KEBERANGKATAN
+						</div>
+						<div class="footer-left-right footer-left-right3">&nbsp;</div>
+						<div class="footer-left-right footer-left-right2" >&nbsp;</div>
+						<div class="footer-left-right">&nbsp;</div>
+					</div>
+				</div>
+				<div class="footer-right">
+					<hr class="footer-line">
+					<div class="footer-right-text">
+						Menuju Kesempurnaan Ibadah
+					</div>
+				</div>
+				<div class="page-number"><span class="page-number-text">05</span></div>
+			</div>
+		</div>
+	</body>
+</html>

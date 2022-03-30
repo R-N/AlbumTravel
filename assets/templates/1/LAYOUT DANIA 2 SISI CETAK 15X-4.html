@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			LAYOUT DANIA 2 SISI CETAK 15X-4
+		</title>
+		<link rel="stylesheet" type="text/css" href="general.css">
+		<link rel="stylesheet" type="text/css" href="style1.css">
+		<style>
+			.main{
+				margin-top:0;
+				text-align: right;
+				padding-top: 76px;
+			}
+			.big-div{
+				display: block;
+				box-sizing: border-box;
+				position: relative;
+				width:100%;
+				height:1210px;
+			}
+			.big-shadow{
+				display: block;
+				box-sizing: border-box;
+				float:left;
+				width:2950px;
+				height:100%;
+				-webkit-filter: drop-shadow(-20px 20px 10px #222);
+				-moz-filter: drop-shadow(-20px 20px 10px #222);
+				-ms-filter: drop-shadow(-20px 20px 10px #222);
+				-o-filter: drop-shadow(-20px 20px 10px #222);
+				filter: drop-shadow(-20px 20px 10px #222);
+			}
+			.big{
+				width: 100%;
+				height: 100%;
+				//shape-outside: polygon(0 0, 2400px 0, 100% 100%, 0 100%);
+				clip-path: polygon(0 0, 2400px 0, 100% 100%, 0 100%);
+			}
+			.trapezium-shadow{
+				display: block;
+				box-sizing: border-box;
+				position: absolute;
+				right: 0;
+				height: 100%;
+				width: 650px;
+				-webkit-filter: drop-shadow(-20px 20px 10px #444);
+				-moz-filter: drop-shadow(-20px 20px 10px #444);
+				-ms-filter: drop-shadow(-20px 20px 10px #444);
+				-o-filter: drop-shadow(-20px 20px 10px #444);
+				filter: drop-shadow(-20px 20px 10px #444);
+			}
+			.trapezium{
+				width: 100%;
+				height: 100%;
+				//shape-outside: polygon(0 0, 100px 0, 100% 100%, 550px 100%);
+				clip-path: polygon(0 0, 100px 0, 100% 100%, 550px 100%);
+				background-color: #91C83F;
+			}
+			.overlay-img{
+				position: absolute;
+				bottom: 60px;
+				left: 220px;
+				width: 1170px;
+				height: 600px;
+				object-fit: cover;
+			}
+			.overlay-logo{
+				position: absolute;
+				bottom: 140px;
+				right: 100px;
+				width: 1615px;
+				height: 360px;
+				object-fit: fill;
+				background-color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="my-body">
+			<div class="header">
+				<div class="top-right-box">&nbsp;</div>
+				<div class="date">
+					Keberangkatan 28 Februari - 16 Maret 2019
+				</div>
+				<hr class="header-line">
+			</div>
+			<div class="main">
+				<div class="big-div">
+					<div class="big-shadow">
+						<div class="img-div big" style="background-image:url('../img/41.jpg')"></div>
+					</div>
+					<div class="trapezium-shadow">
+						<div class="trapezium"></div>
+					</div>
+				</div>
+				<img class="overlay-img" src="../img/02.jpg">
+				<img class="overlay-logo" src="Logo1.png">
+			</div>
+			<div class="footer">
+				<div class="footer-left">
+					<div class="footer-left-left">
+						<div class="footer-left-box">&nbsp;</div>
+						<div class="footer-left-box footer-left-box2">&nbsp;</div>
+						<div class="footer-left-text">
+							KEBERANGKATAN
+						</div>
+						<div class="footer-left-right footer-left-right3">&nbsp;</div>
+						<div class="footer-left-right footer-left-right2" >&nbsp;</div>
+						<div class="footer-left-right">&nbsp;</div>
+					</div>
+				</div>
+				<div class="footer-right">
+					<hr class="footer-line">
+					<div class="footer-right-text">
+						Menuju Kesempurnaan Ibadah
+					</div>
+				</div>
+				<div class="page-number"><span class="page-number-text">04</span></div>
+			</div>
+		</div>
+		
+		<div class="my-body">
+			<div class="header">
+				<div class="top-right-box">&nbsp;</div>
+				<div class="date">
+					Keberangkatan 28 Februari - 16 Maret 2019
+				</div>
+				<hr class="header-line">
+			</div>
+			<div class="main">
+				<div class="big-div img-div">
+					<div class="big-shadow">
+						<div class="img-div big" style="background-image:url('../img/41.jpg')"></div>
+					</div>
+					<div class="trapezium-shadow">
+						<div class="trapezium"></div>
+					</div>
+				</div>
+				<img class="overlay-img" src="../img/02.jpg">
+				<img class="overlay-logo" src="Logo1.png">
+			</div>
+			<div class="footer">
+				<div class="footer-left">
+					<div class="footer-left-left">
+						<div class="footer-left-box">&nbsp;</div>
+						<div class="footer-left-box footer-left-box2">&nbsp;</div>
+						<div class="footer-left-text">
+							KEBERANGKATAN
+						</div>
+						<div class="footer-left-right footer-left-right3">&nbsp;</div>
+						<div class="footer-left-right footer-left-right2" >&nbsp;</div>
+						<div class="footer-left-right">&nbsp;</div>
+					</div>
+				</div>
+				<div class="footer-right">
+					<hr class="footer-line">
+					<div class="footer-right-text">
+						Menuju Kesempurnaan Ibadah
+					</div>
+				</div>
+				<div class="page-number"><span class="page-number-text">04</span></div>
+			</div>
+		</div>
+	</body>
+</html>

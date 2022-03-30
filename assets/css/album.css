@@ -1,0 +1,163 @@
+body{
+	background-color: #EEEEEE;
+	overflow: auto;
+}
+label{
+	display: block;
+	margin-bottom: 0;
+	text-align:left;
+}
+.photos-crud{
+	overflow: auto;
+	max-height: 50vh;
+}
+.photo-box{
+	min-height: 9rem;
+	width: 9rem;
+	height: auto ;
+	background-size: cover;
+	background-position:center;
+	padding: 0;
+	z-index: 20;
+}
+.photo-box-overlay{
+	background-color: #FFFFFF55;
+	min-height: 8.8rem;
+	width: 9rem;
+	height: auto;
+	margin: 0;
+	overflow: auto;
+	border: none;
+	display:none;
+}
+.photo-box-textarea{
+	resize: none;
+	overflow: hidden;
+	height: 1.5rem;
+}
+.photo-box-title{
+	vertical-align: middle;
+	display: table-cell;
+	background-color:#FFFFFFAA;
+	border-radius: 20px;
+}
+.header{
+	position: sticky;
+	top: 0;
+	background-color: #26282D;
+}
+.table-tab .nav-item .active{
+	background-color: #26282D;
+	color: #ffffff;
+	margin-bottom: 0;
+}
+.center-vertical{
+	margin-top: 0;
+	margin-bottom: 0;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.inline-center-vertical{
+	vertical-align: middle;
+}
+.center-horizontal{
+	margin-left: 0;
+	margin-right: 0;
+	position: absolute;
+	left: 50%;
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.login-box{
+	display: block;
+	margin: auto;
+}
+
+.mb-0{
+	margin-bottom: 0;
+}
+.pb-0{
+	padding-bottom: 0;
+}
+.mt-0{
+	margin-top: 0;
+}
+.pt-0{
+	padding-top: 0;
+}
+
+.inline{
+	display: inline-block;
+}
+.block{
+	display: block;
+}
+.right{
+	float: right;
+}
+.left{
+	float: left;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.hide-if-empty:empty {
+   display: none;
+}
+.area-foto{
+	background-size:cover;
+	background-position:center;
+  background-repeat: no-repeat;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  z-index: 50;
+}
+
+.sidenav a {
+  text-decoration: none;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
