@@ -29,13 +29,13 @@ class Auth extends General_controller{
 	public function login_process(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		if($username == NULL || empty(trim($username))){
+		if($username == NULL || !(trim($username))){
 			$fail = $this->fail('Username tidak boleh kosong');
 			$fail['field'] = 'username';
 			echo json_encode($fail);
 			return;
 		}
-		if($password == NULL || empty(trim($password))){
+		if($password == NULL || !(trim($password))){
 			echo json_encode(array(
 				'result' => 'FAIL',
 				'field' => 'password',

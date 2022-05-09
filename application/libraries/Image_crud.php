@@ -280,7 +280,7 @@ class Image_crud {
 			$upload_response = false;
 		}	
 		
-		if (!empty($upload_response)) {
+		if (!!($upload_response)) {
 			$ci = &get_instance();
 			$ci->load->library('image_moo');
 			
@@ -452,7 +452,7 @@ class Image_crud {
 			$this->get_id_pengguna()
 		))->result();
 
-    	$thumbnail_url = !empty($this->thumbnail_path) ? $this->thumbnail_path : $this->image_path;
+    	$thumbnail_url = !!($this->thumbnail_path) ? $this->thumbnail_path : $this->image_path;
 
     	foreach($results as $num => $row)
     	{
@@ -571,7 +571,7 @@ class Image_crud {
 
 		$state_info = $this->getState();
 		
-		if(!empty($state_info))
+		if(!!($state_info))
 		{
 			switch ($state_info->name) {
 				case 'list':

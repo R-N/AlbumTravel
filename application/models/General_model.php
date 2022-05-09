@@ -44,7 +44,7 @@ class General_model extends CI_Model {
 		$fields = array();
 		foreach($field_names as $field_name){
 			$field = $this->input->post($field_name);
-			if($field == NULL || empty(trim($field))){
+			if($field == NULL || !(trim($field))){
 				echo json_encode(array(
 					'result' => 'FAIL',
 					'field' => $field_name,

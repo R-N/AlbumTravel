@@ -23,7 +23,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/uas4b/';
+
+$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === 0 ? 'https://' : 'http://';
+$domain = $_SERVER['HTTP_HOST'];
+$root = $protocol.$domain;
+$root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
+$req_uri = $_SERVER['REQUEST_URI'];
+$path = substr($req_uri,0,strrpos($req_uri,'/'));
+
+$config['base_url'] = $root;
+
+//$config['base_url'] = 'http://localhost/uas4b/';
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +63,7 @@ $config['index_page'] = '';
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
 $config['uri_protocol']	= 'REQUEST_URI';
+//$config['uri_protocol']	= 'AUTO';
 
 /*
 |--------------------------------------------------------------------------
@@ -377,19 +388,31 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
+
+/*
+$config['sess_driver'] = 'files';
+$config['sess_cookie_name'] = 'ci_session';
+$config['sess_expiration'] = 7200;
+$config['sess_save_path'] = NULL;
+$config['sess_match_ip'] = FALSE;
+$config['sess_time_to_update'] = 300;
+$config['sess_regenerate_destroy'] = FALSE;
+*/
+
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'cisession';
 $config['sess_expiration'] = 7200;
 $config['sess_expire_on_close'] = FALSE;
-$config['sess_encrypt_cookie']  = TRUE; // change this
+$config['sess_encrypt_cookie']  = TRUE; 
 $config['sess_use_database']    = FALSE;
 $config['sess_save_path'] = FCPATH . 'application/cache/sessions/';
 $config['sess_table_name']      = 'ci_sessions';
-$config['sess_match_ip']        = TRUE; // change this
-$config['sess_match_useragent'] = TRUE; // change this
+$config['sess_match_ip']        = TRUE;
+$config['sess_match_useragent'] = TRUE;
 $config['sess_time_to_update']  = 300;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -407,10 +430,8 @@ $config['sess_regenerate_destroy'] = FALSE;
 |
 */
 $config['cookie_prefix']	= '';
-$config['cookie_domain']	= 'localhost';
-//$config['cookie_domain']	= 'uas4b.sekolahq.id';
-$config['cookie_path']		= '/uas4b';
-//$config['cookie_path']		= '/';
+$config['cookie_domain']	= $domain;
+$config['cookie_path']		= '/'.$path;
 $config['cookie_secure']	= FALSE;
 $config['cookie_httponly'] 	= FALSE;
 

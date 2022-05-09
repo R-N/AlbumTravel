@@ -9,6 +9,9 @@ class Home extends General_controller{
 	public function index(){
 		$this->get_session();
 		$peran = $this->get_peran_pengguna();
+		$this->home($peran);
+	}
+	public function home($peran){
 		if($peran == 1){
 			$this->home_customer();
 		}else if ($peran == 2){
