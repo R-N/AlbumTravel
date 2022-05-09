@@ -10,3 +10,8 @@ Database creds in application/config/database.php:
 - 'password' => '',
 - 'database' => 'albumtravel',
 - 'dbdriver' => 'mysqli',
+
+Initial users:
+1. Superadmin
+- username: admin
+- password: admin
