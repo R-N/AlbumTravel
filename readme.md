@@ -1,5 +1,5 @@
 # Umrah travel system
-Booking and album
+Booking and album. Travel and photo album ordering. Admin can drag and drop photos into album page template. 
 
 Config in application/config/config.php:
 - $config['base_url'] = 'http://localhost/albumtravel/';
