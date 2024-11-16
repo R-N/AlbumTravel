@@ -92,7 +92,7 @@ class MY_DB_postgre_driver extends CI_DB_postgre_driver {
     }
     protected function _update_batch($table, $values, $index)
     {
-        return parent::_update($this->addSchema($table), $values, $index);
+        return parent::_update_batch($this->addSchema($table), $values, $index);
     }
     protected function _delete($table)
     {
@@ -134,6 +134,6 @@ class MY_DB_postgre_driver extends CI_DB_postgre_driver {
     public function query($sql, $binds = FALSE, $return_object = NULL)
     {
         $sql = $this->mysqlToPostgres($sql);
-        return parent::update_string($sql, $binds, $return_object);
+        return parent::query($sql, $binds, $return_object);
     }
 }
