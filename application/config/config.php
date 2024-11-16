@@ -32,7 +32,7 @@ $req_uri = $_SERVER['REQUEST_URI'];
 $path = substr($req_uri,0,strrpos($req_uri,'/'));
 
 $config['base_url'] = $root;
-$config['base_url'] = 'https://album-travel.vercel.app/';
+$config['base_url'] = 'https://album-travel-mu.vercel.app/';
 if (ENVIRONMENT == "production"){
     $config['base_url'] = getenv("BASE_URL") ? getenv("BASE_URL") : $config['base_url'];
 }
