@@ -1,5 +1,6 @@
 <?php
 
+#[\AllowDynamicProperties]
 class General_controller extends HungNG_CI_Base_Controllers {
     public function __construct()
     {
