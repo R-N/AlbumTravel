@@ -29,9 +29,7 @@ $domain = $_SERVER['HTTP_HOST'];
 $root = $protocol.$domain;
 $root .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 $req_uri = $_SERVER['REQUEST_URI'];
-$path = substr($req_uri,0,strrpos($req_uri,'/'));
-
-echo $domain . "/" . $path;
+$path = substr($req_uri, 0, strrpos($req_uri,'/'));
 
 $config['base_url'] = $root;
 if (ENVIRONMENT == "production"){
@@ -42,8 +40,11 @@ if (ENVIRONMENT == "production"){
     $protocol = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : $protocol;
     $domain = isset($parsed_url['host']) ? $parsed_url['host'] : $domain;
     $path = isset($parsed_url['path']) ? $parsed_url['path'] : $path;
-    echo $domain . "/" . $path;
 }
+
+$path = ltrim($path, "/");
+
+echo $domain . "/" . $path;
 
 /*
 |--------------------------------------------------------------------------
