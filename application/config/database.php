@@ -115,7 +115,6 @@ if (ENVIRONMENT == 'production'){
     $db['default']['database'] = getenv('POSTGRES_DATABASE') ? getenv('POSTGRES_DATABASE') : $db['default']['database'];
     $db['default']['dbdriver'] = 'postgre';
     // $db['default']['pconnect'] = TRUE;
-    $db['default']['dbdriver'] = 'pdo';
-    $db['default']['dsn'] = "pgsql:host={$db['default']['hostname']};port={$db['default']['port']};dbname={$db['default']['database']}";
+    // $db['default']['dbdriver'] = 'pdo';
+    // $db['default']['dsn'] = "pgsql:host={$db['default']['hostname']};port={$db['default']['port']};dbname={$db['default']['database']};sslmode={$db['default']['sslmode']}";
 }
-print_r($db['default']);
