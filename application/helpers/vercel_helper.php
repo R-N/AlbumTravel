@@ -121,3 +121,13 @@ if (!function_exists('fixPath')) {
         return $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $path;
     }
 }
+
+if (!function_exists('addSchema')) {
+    function addSchema($table){
+        if (strpos($mystring, ".") !== false) {
+            return $table;
+        }
+        $schema = &get_instance()->db->schema;
+        return "\"{$this->schema}\".{$table}";
+    }
+}
