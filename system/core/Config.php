@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2019 - 2022, CodeIgniter Foundation
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
  * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
  * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -47,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Libraries
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/userguide3/libraries/config.html
+ * @link		https://codeigniter.com/user_guide/libraries/config.html
  */
 class CI_Config {
 
@@ -124,7 +123,6 @@ class CI_Config {
 	 * @param	bool	$fail_gracefully	Whether to just return FALSE or display an error message
 	 * @return	bool	TRUE if the file was loaded correctly or FALSE on failure
 	 */
-	#[\ReturnTypeWillChange]
 	public function load($file = '', $use_sections = FALSE, $fail_gracefully = FALSE)
 	{
 		$file = ($file === '') ? 'config' : str_replace('.php', '', $file);
@@ -175,11 +173,12 @@ class CI_Config {
 			}
 		}
 
-		if ($loaded === TRUE) {
+		if ($loaded === TRUE)
+		{
 			return TRUE;
 		}
-
-		if ($fail_gracefully === TRUE) {
+		elseif ($fail_gracefully === TRUE)
+		{
 			return FALSE;
 		}
 
@@ -219,8 +218,7 @@ class CI_Config {
 		{
 			return NULL;
 		}
-
-		if (trim($this->config[$item]) === '')
+		elseif (trim($this->config[$item]) === '')
 		{
 			return '';
 		}
@@ -265,7 +263,8 @@ class CI_Config {
 
 		$uri = $this->_uri_string($uri);
 
-		if ($this->item('enable_query_strings') === FALSE) {
+		if ($this->item('enable_query_strings') === FALSE)
+		{
 			$suffix = isset($this->config['url_suffix']) ? $this->config['url_suffix'] : '';
 
 			if ($suffix !== '')
@@ -282,8 +281,8 @@ class CI_Config {
 
 			return $base_url.$this->slash_item('index_page').$uri;
 		}
-
-		if (strpos($uri, '?') === FALSE) {
+		elseif (strpos($uri, '?') === FALSE)
+		{
 			$uri = '?'.$uri;
 		}
 
@@ -336,12 +335,13 @@ class CI_Config {
 	 */
 	protected function _uri_string($uri)
 	{
-		if ($this->item('enable_query_strings') === FALSE) {
+		if ($this->item('enable_query_strings') === FALSE)
+		{
 			is_array($uri) && $uri = implode('/', $uri);
 			return ltrim($uri, '/');
 		}
-
-		if (is_array($uri)) {
+		elseif (is_array($uri))
+		{
 			return http_build_query($uri);
 		}
 

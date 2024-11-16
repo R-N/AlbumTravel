@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2019 - 2022, CodeIgniter Foundation
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
  * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
  * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -45,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Image_lib
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/userguide3/libraries/image_lib.html
+ * @link		https://codeigniter.com/user_guide/libraries/image_lib.html
  */
 class CI_Image_lib {
 
@@ -84,13 +83,6 @@ class CI_Image_lib {
 	 * @var string
 	 */
 	public $new_image		= '';
-
-	/**
-	 * Path to destination image
-	 *
-	 * @var string
-	 */
-	public $dest_image		= '';
 
 	/**
 	 * Image width
@@ -573,7 +565,7 @@ class CI_Image_lib {
 		else
 		{
 			// Is there a file name?
-			if ( ! preg_match('#\.(jpg|jpeg|gif|png|webp|avif)$#i', $this->new_image))
+			if ( ! preg_match('#\.(jpg|jpeg|gif|png)$#i', $this->new_image))
 			{
 				$this->dest_image  = $this->source_image;
 				$this->dest_folder = $this->new_image;
@@ -638,7 +630,7 @@ class CI_Image_lib {
 		// Set the quality
 		$this->quality = trim(str_replace('%', '', $this->quality));
 
-		if ($this->quality === '' OR $this->quality === 0 OR ! ctype_digit((string) $this->quality))
+		if ($this->quality === '' OR $this->quality === 0 OR ! ctype_digit($this->quality))
 		{
 			$this->quality = 90;
 		}
@@ -1181,8 +1173,8 @@ class CI_Image_lib {
 		// invert the offset. Same with the horizontal
 		// offset when the image is at the right
 
-		$this->wm_vrt_alignment = strtoupper((string) $this->wm_vrt_alignment[0]);
-		$this->wm_hor_alignment = strtoupper((string) $this->wm_hor_alignment[0]);
+		$this->wm_vrt_alignment = strtoupper($this->wm_vrt_alignment[0]);
+		$this->wm_hor_alignment = strtoupper($this->wm_hor_alignment[0]);
 
 		if ($this->wm_vrt_alignment === 'B')
 			$this->wm_vrt_offset = $this->wm_vrt_offset * -1;
@@ -1237,7 +1229,7 @@ class CI_Image_lib {
 			imagecopymerge($src_img, $wm_img, $x_axis, $y_axis, 0, 0, $wm_width, $wm_height, $this->wm_opacity);
 		}
 
-		// We can preserve transparency for PNG, WEBP, AVIF images
+		// We can preserve transparency for PNG images
 		if ($this->image_type === 3)
 		{
 			imagealphablending($src_img, FALSE);
@@ -1340,8 +1332,8 @@ class CI_Image_lib {
 			$this->wm_shadow_distance = 0;
 		}
 
-		$this->wm_vrt_alignment = strtoupper((string) $this->wm_vrt_alignment[0]);
-		$this->wm_hor_alignment = strtoupper((string) $this->wm_hor_alignment[0]);
+		$this->wm_vrt_alignment = strtoupper($this->wm_vrt_alignment[0]);
+		$this->wm_hor_alignment = strtoupper($this->wm_hor_alignment[0]);
 
 		// Set vertical alignment
 		if ($this->wm_vrt_alignment === 'M')

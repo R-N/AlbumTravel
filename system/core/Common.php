@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2019 - 2022, CodeIgniter Foundation
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
  * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
  * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -47,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	CodeIgniter
  * @category	Common Functions
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/userguide3/
+ * @link		https://codeigniter.com/user_guide/
  */
 
 // ------------------------------------------------------------------------
@@ -57,7 +56,7 @@ if ( ! function_exists('is_php'))
 	/**
 	 * Determines if the current version of PHP is equal to or greater than the supplied value
 	 *
-	 * @param	string $version
+	 * @param	string
 	 * @return	bool	TRUE if the current version is $version or higher
 	 */
 	function is_php($version)
@@ -76,56 +75,6 @@ if ( ! function_exists('is_php'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('is_windows'))
-{
-	/**
-	 * Check if we're running on a Windows platform
-	 */
-	function is_windows()
-	{
-		return DIRECTORY_SEPARATOR === '\\';
-	}
-}
-
-// ------------------------------------------------------------------------
-
-if ( ! function_exists('is_linux')) {
-	/**
-	 * Check if we're running on a Linux platform
-	 */
-	function is_linux()
-	{
-		$OS = strtoupper(substr(PHP_OS, 0, 3));
-		return $OS !== 'WIN';
-	}
-}
-
-// ------------------------------------------------------------------------
-
-if ( ! function_exists('mt_random_int'))
-{
-	function mt_random_int()
-	{
-		if (is_php('7.0') && (function_exists('random_int') && defined(PHP_INT_MIN) && defined('PHP_INT_MAX')))
-		{
-			try {
-				return random_int(PHP_INT_MIN, PHP_INT_MAX);
-			}
-			catch (Exception $e)
-			{
-				log_message('error', 'Error Code: '.$e->getCode().' - File: '.$e->getFile().' - Line: '.$e->getLine().' - Message: '.$e->getMessage());
-				return mt_rand();
-			}
-		}
-		else
-		{
-			return mt_rand();
-		}
-	}
-}
-
-// ------------------------------------------------------------------------
-
 if ( ! function_exists('is_really_writable'))
 {
 	/**
@@ -136,7 +85,7 @@ if ( ! function_exists('is_really_writable'))
 	 * on Unix servers if safe_mode is on.
 	 *
 	 * @link	https://bugs.php.net/bug.php?id=54709
-	 * @param	string $file
+	 * @param	string
 	 * @return	bool
 	 */
 	function is_really_writable($file)
@@ -152,7 +101,7 @@ if ( ! function_exists('is_really_writable'))
 		 */
 		if (is_dir($file))
 		{
-			$file = rtrim($file, '/').'/'.md5(mt_random_int());
+			$file = rtrim($file, '/').'/'.md5(mt_rand());
 			if (($fp = @fopen($file, 'ab')) === FALSE)
 			{
 				return FALSE;
@@ -163,8 +112,7 @@ if ( ! function_exists('is_really_writable'))
 			@unlink($file);
 			return TRUE;
 		}
-
-		if ( ! is_file($file) OR ($fp = @fopen($file, 'ab')) === FALSE)
+		elseif ( ! is_file($file) OR ($fp = @fopen($file, 'ab')) === FALSE)
 		{
 			return FALSE;
 		}
@@ -185,9 +133,9 @@ if ( ! function_exists('load_class'))
 	 * exist it is instantiated and set to a static variable. If it has
 	 * previously been instantiated the variable is returned.
 	 *
-	 * @param	string	$class the class name being requested
-	 * @param	string	$directory the directory where the class should be found
-	 * @param	mixed	$param an optional argument to pass to the class constructor
+	 * @param	string	the class name being requested
+	 * @param	string	the directory where the class should be found
+	 * @param	mixed	an optional argument to pass to the class constructor
 	 * @return	object
 	 */
 	function &load_class($class, $directory = 'libraries', $param = NULL)
@@ -258,7 +206,7 @@ if ( ! function_exists('is_loaded'))
 	 * Keeps track of which libraries have been loaded. This function is
 	 * called by the load_class() function above
 	 *
-	 * @param	string $class
+	 * @param	string
 	 * @return	array
 	 */
 	function &is_loaded($class = '')
@@ -267,7 +215,7 @@ if ( ! function_exists('is_loaded'))
 
 		if ($class !== '')
 		{
-			$_is_loaded[strtolower((string) $class)] = $class;
+			$_is_loaded[strtolower($class)] = $class;
 		}
 
 		return $_is_loaded;
@@ -284,10 +232,10 @@ if ( ! function_exists('get_config'))
 	 * This function lets us grab the config file even if the Config class
 	 * hasn't been instantiated yet
 	 *
-	 * @param	array $replace
+	 * @param	array
 	 * @return	array
 	 */
-	function &get_config(array $replace = array())
+	function &get_config(Array $replace = array())
 	{
 		static $config;
 
@@ -339,7 +287,7 @@ if ( ! function_exists('config_item'))
 	/**
 	 * Returns the specified config item
 	 *
-	 * @param	string $item
+	 * @param	string
 	 * @return	mixed
 	 */
 	function config_item($item)
@@ -371,14 +319,9 @@ if ( ! function_exists('get_mimes'))
 
 		if (empty($_mimes))
 		{
-			$_mimes = file_exists(__DIR__.'/../../config/mimes.php')
-				? include(__DIR__.'/../../config/mimes.php')
+			$_mimes = file_exists(APPPATH.'config/mimes.php')
+				? include(APPPATH.'config/mimes.php')
 				: array();
-
-			if (file_exists(APPPATH.'config/mimes.php'))
-			{
-				$_mimes = array_merge($_mimes, include(APPPATH.'config/mimes.php'));
-			}
 
 			if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/mimes.php'))
 			{
@@ -404,15 +347,16 @@ if ( ! function_exists('is_https'))
 	 */
 	function is_https()
 	{
-		if (! empty($_SERVER['HTTPS']) && strtolower((string) $_SERVER['HTTPS']) !== 'off') {
+		if ( ! empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off')
+		{
 			return TRUE;
 		}
-
-		if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower((string) $_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') {
+		elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https')
+		{
 			return TRUE;
 		}
-
-		if (! empty($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower((string) $_SERVER['HTTP_FRONT_END_HTTPS']) !== 'off') {
+		elseif ( ! empty($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS']) !== 'off')
+		{
 			return TRUE;
 		}
 
@@ -451,9 +395,9 @@ if ( ! function_exists('show_error'))
 	 * This function will send the error page directly to the
 	 * browser and exit.
 	 *
-	 * @param	string $message
-	 * @param	int|float $status_code
-	 * @param	string $heading
+	 * @param	string
+	 * @param	int
+	 * @param	string
 	 * @return	void
 	 */
 	function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered')
@@ -468,7 +412,7 @@ if ( ! function_exists('show_error'))
 		{
 			$exit_status = 1; // EXIT_ERROR
 		}
-        /** @var CI_Exceptions $_error */
+
 		$_error =& load_class('Exceptions', 'core');
 		echo $_error->show_error($heading, $message, 'error_general', $status_code);
 		exit($exit_status);
@@ -486,13 +430,12 @@ if ( ! function_exists('show_404'))
 	 * However, instead of the standard error template it displays
 	 * 404 errors.
 	 *
-	 * @param	string $page
-	 * @param	bool $log_error
+	 * @param	string
+	 * @param	bool
 	 * @return	void
 	 */
 	function show_404($page = '', $log_error = TRUE)
 	{
-        /** @var CI_Exceptions $_error */
 		$_error =& load_class('Exceptions', 'core');
 		$_error->show_404($page, $log_error);
 		exit(4); // EXIT_UNKNOWN_FILE
@@ -509,8 +452,8 @@ if ( ! function_exists('log_message'))
 	 * We use this as a simple mechanism to access the logging
 	 * class and send messages to be logged.
 	 *
-	 * @param	string	$level the error level: 'error', 'debug' or 'info'
-	 * @param	string	$message the error message
+	 * @param	string	the error level: 'error', 'debug' or 'info'
+	 * @param	string	the error message
 	 * @return	void
 	 */
 	function log_message($level, $message)
@@ -521,11 +464,6 @@ if ( ! function_exists('log_message'))
 		{
 			// references cannot be directly assigned to static variables, so we use an array
 			$_log[0] =& load_class('Log', 'core');
-		}
-
-		// 2023-03-29: In log_message - If message not string, force string with json_encode
-		if (!is_string($message)) {
-			$message = json_encode($message);
 		}
 
 		$_log[0]->write_log($level, $message);
@@ -539,8 +477,8 @@ if ( ! function_exists('set_status_header'))
 	/**
 	 * Set HTTP Status Header
 	 *
-	 * @param	int $code	the status code
-	 * @param	string $text
+	 * @param	int	the status code
+	 * @param	string
 	 * @return	void
 	 */
 	function set_status_header($code = 200, $text = '')
@@ -558,7 +496,7 @@ if ( ! function_exists('set_status_header'))
 		if (empty($text))
 		{
 			is_int($code) OR $code = (int) $code;
-			$static = array(
+			$stati = array(
 				100	=> 'Continue',
 				101	=> 'Switching Protocols',
 
@@ -611,9 +549,9 @@ if ( ! function_exists('set_status_header'))
 				511	=> 'Network Authentication Required',
 			);
 
-			if (isset($static[$code]))
+			if (isset($stati[$code]))
 			{
-				$text = $static[$code];
+				$text = $stati[$code];
 			}
 			else
 			{
@@ -627,7 +565,7 @@ if ( ! function_exists('set_status_header'))
 			return;
 		}
 
-		$server_protocol = (isset($_SERVER['SERVER_PROTOCOL']) && in_array($_SERVER['SERVER_PROTOCOL'], array('HTTP/1.0', 'HTTP/1.1', 'HTTP/2', 'HTTP/2.0'), TRUE))
+		$server_protocol = (isset($_SERVER['SERVER_PROTOCOL']) && in_array($_SERVER['SERVER_PROTOCOL'], array('HTTP/1.0', 'HTTP/1.1', 'HTTP/2'), TRUE))
 			? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
 		header($server_protocol.' '.$code.' '.$text, TRUE, $code);
 	}
@@ -676,7 +614,6 @@ if ( ! function_exists('_error_handler'))
 			return;
 		}
 
-        /** @var CI_Exceptions $_error */
 		$_error =& load_class('Exceptions', 'core');
 		$_error->log_exception($severity, $message, $filepath, $line);
 
@@ -712,7 +649,6 @@ if ( ! function_exists('_exception_handler'))
 	 */
 	function _exception_handler($exception)
 	{
-        /** @var CI_Exceptions $_error */
 		$_error =& load_class('Exceptions', 'core');
 		$_error->log_exception('error', 'Exception: '.$exception->getMessage(), $exception->getFile(), $exception->getLine());
 
@@ -765,8 +701,8 @@ if ( ! function_exists('remove_invisible_characters'))
 	 * This prevents sandwiching null characters
 	 * between ascii characters, like Java\0script.
 	 *
-	 * @param	string $str
-	 * @param	bool $url_encoded
+	 * @param	string
+	 * @param	bool
 	 * @return	string
 	 */
 	function remove_invisible_characters($str, $url_encoded = TRUE)
@@ -828,22 +764,6 @@ if ( ! function_exists('html_escape'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('html_escape_all')){
-    /**
-     * Escape all HTML, JavaScript, and CSS
-     *
-     * @param string $input The input string
-     * @param string $encoding Which character encoding are we using?
-     * @return string
-     */
-    function html_escape_all($input, $encoding = 'UTF-8')
-    {
-        return htmlentities($input, ENT_QUOTES | ENT_HTML5, $encoding);
-    }
-}
-
-// ------------------------------------------------------------------------
-
 if ( ! function_exists('_stringify_attributes'))
 {
 	/**
@@ -852,15 +772,17 @@ if ( ! function_exists('_stringify_attributes'))
 	 * Helper function used to convert a string, array, or object
 	 * of attributes to a string.
 	 *
-	 * @param	mixed	$attributes string, array, object
-	 * @param	bool	$js
+	 * @param	mixed	string, array, object
+	 * @param	bool
 	 * @return	string
 	 */
 	function _stringify_attributes($attributes, $js = FALSE)
 	{
+		$atts = NULL;
+
 		if (empty($attributes))
 		{
-			return NULL;
+			return $atts;
 		}
 
 		if (is_string($attributes))
@@ -870,7 +792,6 @@ if ( ! function_exists('_stringify_attributes'))
 
 		$attributes = (array) $attributes;
 
-		$atts = '';
 		foreach ($attributes as $key => $val)
 		{
 			$atts .= ($js) ? $key.'='.$val.',' : ' '.$key.'="'.$val.'"';

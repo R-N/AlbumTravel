@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2019 - 2022, CodeIgniter Foundation
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
  * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
  * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -49,9 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Drivers
  * @category	Database
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/userguide3/database/
+ * @link		https://codeigniter.com/user_guide/database/
  */
-#[AllowDynamicProperties]
 abstract class CI_DB_driver {
 
 	/**
@@ -338,20 +336,6 @@ abstract class CI_DB_driver {
 	 * @var	string
 	 */
 	protected $_like_escape_chr = '!';
-
-	/**
-	 * RegExp used to escape identifiers
-	 *
-	 * @var array
-	 */
-	protected $_preg_escape_char = array();
-
-	/**
-	 * RegExp used to get operators
-	 *
-	 * @var string[]
-	 */
-	protected $_preg_operators = array();
 
 	/**
 	 * ORDER BY random keyword
@@ -907,18 +891,6 @@ abstract class CI_DB_driver {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Returns TRUE if a transaction is currently active
-	 *
-	 * @return	bool
-	 */
-	public function trans_active()
-	{
-		return (bool) $this->_trans_depth;
-	}
-
-	// --------------------------------------------------------------------
-
-	/**
 	 * Begin Transaction
 	 *
 	 * @param	bool	$test_mode
@@ -1424,16 +1396,18 @@ abstract class CI_DB_driver {
 			return $item;
 		}
 		// Avoid breaking functions and literal values inside queries
-		elseif (ctype_digit((string) $item) OR $item[0] === "'" OR ($this->_escape_char !== '"' && $item[0] === '"') OR strpos($item, '(') !== FALSE)
+		elseif (ctype_digit($item) OR $item[0] === "'" OR ($this->_escape_char !== '"' && $item[0] === '"') OR strpos($item, '(') !== FALSE)
 		{
 			return $item;
 		}
 
-		if (empty($this->_preg_escape_char))
+		static $preg_ec = array();
+
+		if (empty($preg_ec))
 		{
 			if (is_array($this->_escape_char))
 			{
-				$this->_preg_escape_char = array(
+				$preg_ec = array(
 					preg_quote($this->_escape_char[0], '/'),
 					preg_quote($this->_escape_char[1], '/'),
 					$this->_escape_char[0],
@@ -1442,8 +1416,8 @@ abstract class CI_DB_driver {
 			}
 			else
 			{
-				$this->_preg_escape_char[0] = $this->_preg_escape_char[1] = preg_quote($this->_escape_char, '/');
-				$this->_preg_escape_char[2] = $this->_preg_escape_char[3] = $this->_escape_char;
+				$preg_ec[0] = $preg_ec[1] = preg_quote($this->_escape_char, '/');
+				$preg_ec[2] = $preg_ec[3] = $this->_escape_char;
 			}
 		}
 
@@ -1451,11 +1425,11 @@ abstract class CI_DB_driver {
 		{
 			if (strpos($item, '.'.$id) !== FALSE)
 			{
-				return preg_replace('/'.$this->_preg_escape_char[0].'?([^'.$this->_preg_escape_char[1].'\.]+)'.$this->_preg_escape_char[1].'?\./i', $this->_preg_escape_char[2].'$1'.$this->_preg_escape_char[3].'.', $item);
+				return preg_replace('/'.$preg_ec[0].'?([^'.$preg_ec[1].'\.]+)'.$preg_ec[1].'?\./i', $preg_ec[2].'$1'.$preg_ec[3].'.', $item);
 			}
 		}
 
-		return preg_replace('/'.$this->_preg_escape_char[0].'?([^'.$this->_preg_escape_char[1].'\.]+)'.$this->_preg_escape_char[1].'?(\.)?/i', $this->_preg_escape_char[2].'$1'.$this->_preg_escape_char[3].'$2', $item);
+		return preg_replace('/'.$preg_ec[0].'?([^'.$preg_ec[1].'\.]+)'.$preg_ec[1].'?(\.)?/i', $preg_ec[2].'$1'.$preg_ec[3].'$2', $item);
 	}
 
 	// --------------------------------------------------------------------
@@ -1574,12 +1548,14 @@ abstract class CI_DB_driver {
 	 */
 	protected function _get_operator($str)
 	{
-		if (empty($this->_preg_operators))
+		static $_operators;
+
+		if (empty($_operators))
 		{
 			$_les = ($this->_like_escape_str !== '')
 				? '\s+'.preg_quote(trim(sprintf($this->_like_escape_str, $this->_like_escape_chr)), '/')
 				: '';
-			$this->_preg_operators = array(
+			$_operators = array(
 				'\s*(?:<|>|!)?=\s*',             // =, <=, >=, !=
 				'\s*<>?\s*',                     // <, <>
 				'\s*>\s*',                       // >
@@ -1588,7 +1564,6 @@ abstract class CI_DB_driver {
 				'\s+EXISTS\s*\(.*\)',        // EXISTS(sql)
 				'\s+NOT EXISTS\s*\(.*\)',    // NOT EXISTS(sql)
 				'\s+BETWEEN\s+',                 // BETWEEN value AND value
-				'\s+NOT BETWEEN\s+',             // NOT BETWEEN value AND value
 				'\s+IN\s*\(.*\)',            // IN(list)
 				'\s+NOT IN\s*\(.*\)',        // NOT IN (list)
 				'\s+LIKE\s+\S.*('.$_les.')?',    // LIKE 'expr'[ ESCAPE '%s']
@@ -1597,7 +1572,7 @@ abstract class CI_DB_driver {
 
 		}
 
-		return preg_match('/'.implode('|', $this->_preg_operators).'/i', $str, $match)
+		return preg_match('/'.implode('|', $_operators).'/i', $str, $match)
 			? $match[0] : FALSE;
 	}
 

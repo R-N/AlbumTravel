@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2019 - 2022, CodeIgniter Foundation
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
  * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
  * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -47,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	CodeIgniter
  * @category	Front-controller
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/userguide3/
+ * @link		https://codeigniter.com/user_guide/
  */
 
 /**
@@ -56,17 +55,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @var	string
  *
  */
-	const CI_VERSION = '3.2.0';
+	const CI_VERSION = '3.1.10';
 
 /*
  * ------------------------------------------------------
  *  Load the framework constants
  * ------------------------------------------------------
  */
-	if (file_exists(__DIR__.'/../../config/constants.php'))
-	{
-		require_once(__DIR__.'/../../config/constants.php');
-	}
 	if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/constants.php'))
 	{
 		require_once(APPPATH.'config/'.ENVIRONMENT.'/constants.php');
@@ -246,7 +241,7 @@ if ( ! is_php('5.4'))
  * in it's constructor, but it's _not_ class-specific.
  *
  */
-	$charset = strtoupper((string) config_item('charset'));
+	$charset = strtoupper(config_item('charset'));
 	ini_set('default_charset', $charset);
 
 	if (extension_loaded('mbstring'))
@@ -439,7 +434,7 @@ if ( ! is_php('5.4'))
 		 * ReflectionMethod::isConstructor() is the ONLY reliable check,
 		 * knowing which method will be executed as a constructor.
 		 */
-		else
+		elseif ( ! is_callable(array($class, $method)))
 		{
 			$reflection = new ReflectionMethod($class, $method);
 			if ( ! $reflection->isPublic() OR $reflection->isConstructor())

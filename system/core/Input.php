@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2019 - 2022, CodeIgniter Foundation
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
  * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
  * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.0.0
@@ -47,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Input
  * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/userguide3/libraries/input.html
+ * @link		https://codeigniter.com/user_guide/libraries/input.html
  */
 class CI_Input {
 
@@ -358,15 +357,14 @@ class CI_Input {
 	 * @param	string		$prefix		Cookie name prefix
 	 * @param	bool		$secure		Whether to only transfer cookies via SSL
 	 * @param	bool		$httponly	Whether to only makes the cookie accessible via HTTP (no javascript)
-	 * @param	string		$samesite	SameSite attribute
 	 * @return	void
 	 */
-	public function set_cookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL, $httponly = NULL, $samesite = NULL)
+	public function set_cookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL, $httponly = NULL)
 	{
 		if (is_array($name))
 		{
 			// always leave 'name' in last place, as the loop will break otherwise, due to $$item
-			foreach (array('value', 'expire', 'domain', 'path', 'prefix', 'secure', 'httponly', 'samesite', 'name') as $item)
+			foreach (array('value', 'expire', 'domain', 'path', 'prefix', 'secure', 'httponly', 'name') as $item)
 			{
 				if (isset($name[$item]))
 				{
@@ -407,47 +405,7 @@ class CI_Input {
 			$expire = ($expire > 0) ? time() + $expire : 0;
 		}
 
-		isset($samesite) OR $samesite = config_item('cookie_samesite');
-		if (isset($samesite))
-		{
-			$samesite = ucfirst(strtolower((string) $samesite));
-			in_array($samesite, array('Lax', 'Strict', 'None'), TRUE) OR $samesite = 'Lax';
-		}
-		else
-		{
-			$samesite = 'Lax';
-		}
-
-		if ($samesite === 'None' && ! $secure)
-		{
-			log_message('error', $name.' cookie sent with SameSite=None, but without Secure attribute.');
-		}
-
-		if ( ! is_php('7.3'))
-		{
-			$maxage = $expire - time();
-			if ($maxage < 1)
-			{
-				$maxage = 0;
-			}
-
-			$cookie_header = 'Set-Cookie: '.$prefix.$name.'='.rawurlencode($value);
-			$cookie_header .= ($expire === 0 ? '' : '; Expires='.gmdate('D, d-M-Y H:i:s T', $expire)).'; Max-Age='.$maxage;
-			$cookie_header .= '; Path='.$path.($domain !== '' ? '; Domain='.$domain : '');
-			$cookie_header .= ($secure ? '; Secure' : '').($httponly ? '; HttpOnly' : '').'; SameSite='.$samesite;
-			header($cookie_header);
-			return;
-		}
-
-		$setcookie_options = array(
-			'expires' => $expire,
-			'path' => $path,
-			'domain' => $domain,
-			'secure' => $secure,
-			'httponly' => $httponly,
-			'samesite' => $samesite,
-		);
-		setcookie($prefix.$name, $value, $setcookie_options);
+		setcookie($prefix.$name, $value, $expire, $path, $domain, $secure, $httponly);
 	}
 
 	// --------------------------------------------------------------------
@@ -598,7 +556,7 @@ class CI_Input {
 	 */
 	public function valid_ip($ip, $which = '')
 	{
-		switch (strtolower((string) $which))
+		switch (strtolower($which))
 		{
 			case 'ipv4':
 				$which = FILTER_FLAG_IPV4;
@@ -607,7 +565,7 @@ class CI_Input {
 				$which = FILTER_FLAG_IPV6;
 				break;
 			default:
-				$which = 0;
+				$which = NULL;
 				break;
 		}
 
@@ -817,7 +775,7 @@ class CI_Input {
 				if (sscanf($key, 'HTTP_%s', $header) === 1)
 				{
 					// take SOME_HEADER and turn it into Some-Header
-					$header = str_replace('_', ' ', strtolower((string) $header));
+					$header = str_replace('_', ' ', strtolower($header));
 					$header = str_replace(' ', '-', ucwords($header));
 
 					$this->headers[$header] = $_SERVER[$key];
@@ -848,11 +806,11 @@ class CI_Input {
 			empty($this->headers) && $this->request_headers();
 			foreach ($this->headers as $key => $value)
 			{
-				$headers[strtolower((string) $key)] = $value;
+				$headers[strtolower($key)] = $value;
 			}
 		}
 
-		$index = strtolower((string) $index);
+		$index = strtolower($index);
 
 		if ( ! isset($headers[$index]))
 		{
@@ -875,7 +833,7 @@ class CI_Input {
 	 */
 	public function is_ajax_request()
 	{
-		return ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower((string) $_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
+		return ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
 	}
 
 	// --------------------------------------------------------------------
@@ -907,8 +865,8 @@ class CI_Input {
 	public function method($upper = FALSE)
 	{
 		return ($upper)
-			? strtoupper((string) $this->server('REQUEST_METHOD'))
-			: strtolower((string) $this->server('REQUEST_METHOD'));
+			? strtoupper($this->server('REQUEST_METHOD'))
+			: strtolower($this->server('REQUEST_METHOD'));
 	}
 
 	// ------------------------------------------------------------------------
@@ -928,8 +886,7 @@ class CI_Input {
 			isset($this->_raw_input_stream) OR $this->_raw_input_stream = file_get_contents('php://input');
 			return $this->_raw_input_stream;
 		}
-
-		if ($name === 'ip_address')
+		elseif ($name === 'ip_address')
 		{
 			return $this->ip_address;
 		}
