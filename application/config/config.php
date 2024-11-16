@@ -44,8 +44,6 @@ if (ENVIRONMENT == "production"){
 
 $path = ltrim($path, "/");
 
-echo $domain . "/" . $path;
-
 /*
 |--------------------------------------------------------------------------
 | Index File
