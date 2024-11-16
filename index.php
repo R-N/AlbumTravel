@@ -281,6 +281,8 @@ if ( ! isset($view_folder[0]) && is_dir(APPPATH . 'views' . DIRECTORY_SEPARATOR)
 
 define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
 
+phpinfo();
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
