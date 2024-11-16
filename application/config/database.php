@@ -118,3 +118,4 @@ if (ENVIRONMENT == 'production'){
     $db['default']['dbdriver'] = 'pdo';
     $db['default']['dsn'] = "pgsql:host={$db['default']['hostname']};port={$db['default']['port']};dbname={$db['default']['database']}";
 }
+print_r($db['default']);
