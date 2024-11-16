@@ -85,4 +85,28 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('SITE_NAME', 'Album B');
-define('IMAGE_PATH', 'assets/uploads/foto');
+$image_path = 'assets/uploads/foto';
+if (ENVIRONMENT == 'production'){
+    $image_path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $image_path;
+    if (!is_dir($image_path) || !is_writable($image_path)){
+        $image_path = 'assets/uploads/foto';
+    }
+    if (!is_dir($image_path) || !is_writable($image_path)){
+        $image_path =  sys_get_temp_dir();
+    }
+}
+define('IMAGE_PATH', $image_path);
+
+defined('_PROCESS_TEST_') OR define('_PROCESS_TEST_', FALSE);
+defined('CACHE_KEY') OR define('CACHE_KEY', 'Bear-CodeIgniter-v3-Skeleton-on-Vercel-Cache-');
+defined('GLOBAL_CACHE_PREFIX') OR define('GLOBAL_CACHE_PREFIX', CACHE_KEY);
+defined('MY_TELEGRAM_ID') OR define('MY_TELEGRAM_ID', '1234');
+defined('TELEGRAM_JARVIS_BOT') OR define('TELEGRAM_JARVIS_BOT', [
+    'telegram_messages' => [
+        'bot_name' => 'xxx',
+        'bot_api_key' => 'xxx',
+        'default_chat_id' => MY_TELEGRAM_ID
+    ]
+]);
+// Elasticsearch
+defined('HOST_ELASTICSEARCH') OR define('HOST_ELASTICSEARCH', 'http://127.0.0.1:9200');
