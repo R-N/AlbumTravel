@@ -114,3 +114,4 @@ if (ENVIRONMENT == 'production'){
     $db['default']['database'] = getenv('POSTGRES_DATABASE') ? getenv('POSTGRES_DATABASE') : $db['default']['database'];
     $db['default']['dbdriver'] = 'postgre';
 }
+print_r($db['default']);
