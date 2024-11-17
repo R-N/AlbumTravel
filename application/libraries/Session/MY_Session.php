@@ -11,4 +11,13 @@ class MY_Session extends CI_Session {
             parent::sess_update();
         }
     }
+    public function sess_destroy()
+    {
+        $CI =& get_instance();
+
+        if ( ! $CI->input->is_ajax_request())
+        {
+            parent::sess_destroy();
+        }
+    }
 }
