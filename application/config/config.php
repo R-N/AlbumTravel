@@ -410,9 +410,6 @@ $config['encryption_key'] = hex2bin('b8bc4dacca2d4e90bd6f5d78a5f7ca4161e00f81349
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_cookie_name'] = sha1(
-    'Session_Cookie_Name_HungNG_CodeIgniter_v3_skeleton_tVdOt99RreiaULriXOnxflwCzehBxQNc'
-);
 $config['sess_expiration'] = 0;
 $config['sess_expire_on_close'] = FALSE;
 $config['sess_encrypt_cookie']  = FALSE; 
@@ -506,12 +503,6 @@ $config['global_xss_filtering'] = FALSE;
 $config['csrf_protection'] = FALSE;
 $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
-$config['csrf_token_name'] = sha1(
-    ENVIRONMENT . 'CodeIgniter_v3_skeleton_i0ewkTGviUJ53ZU4vcXn31zamsJOtXns_csrf_test_name'
-);
-$config['csrf_cookie_name'] = sha1(
-    ENVIRONMENT . 'CodeIgniter_v3_skeleton_i0ewkTGviUJ53ZU4vcXn31zamsJOtXns_csrf_cookie_name'
-);
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array();
