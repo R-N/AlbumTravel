@@ -14,31 +14,31 @@
         <!-- DataTables Example -->
         <div class="card mb-3">
           <div class="card-header">
-				<i class="fas fa-table"></i>
-			   Daftar Paket Travel
-				<a class="btn btn-primary float-right m-2" href="<?=base_url('travel/paket/tambah')?>">Tambah</a>
-		   </div>
+                <i class="fas fa-table"></i>
+               Daftar Paket Travel
+                <a class="btn btn-primary float-right m-2" href="<?=base_url('travel/paket/tambah')?>">Tambah</a>
+           </div>
           <div class="card-body">
-			<p class="alert alert-danger hide-if-empty" id="error_label"><?php 
-				if (isset($error) && $error !== NULL){
-					echo  $error;
-				}
-			?></p>
-			<p class="alert alert-primary hide-if-empty" id="message_label"><?php 
-				if (isset($message) && $message !== NULL){
-					echo  $message;
-				}
-			?></p>
+            <p class="alert alert-danger hide-if-empty" id="error_label"><?php 
+                if (isset($error) && $error !== NULL){
+                    echo  $error;
+                }
+            ?></p>
+            <p class="alert alert-primary hide-if-empty" id="message_label"><?php 
+                if (isset($message) && $message !== NULL){
+                    echo  $message;
+                }
+            ?></p>
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTablePaket" width="100%" cellspacing="0">
-				<caption id="entry_count"></caption>
+                <caption id="entry_count"></caption>
                 <thead>
                   <tr>
-					  <th scope="col">#</th>
-					  <th scope="col">ID</th>
-					  <th scope="col">Nama</th>
-					  <th scope="col">Tanggal Berangkat</th>
-					  <th scope="col">Aksi</th>
+                      <th scope="col">#</th>
+                      <th scope="col">ID</th>
+                      <th scope="col">Nama</th>
+                      <th scope="col">Tanggal Berangkat</th>
+                      <th scope="col">Aksi</th>
                   </tr>
                 </thead>
                   <tbody id="tbody_main">
@@ -64,32 +64,37 @@
   <!-- /#wrapper -->
 
 <script>
-	function fetch(){
-		$('#message_label').empty();
-		$.ajax({
-			type : "POST",
-			url  : "<?=base_url('travel/paket/fetch'); ?>",
-			dataType : "JSON",
-			data:{
-			},
-			success: function(data){
-				$('#error_label').empty();
-				//$('#entry_count').text('Entri ' + data.start + ' hingga ' + data.end + ' dari ' + data.count + ' entri.');
-				$('#tbody_main').empty();
-				let len = data.entries.length;
-				for(i=0; i < len; ++i){
-					let entry = data.entries[i];
-					$('#tbody_main').append(entry);
-				}
-				$("#dataTablePaket").DataTable();
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-				$('#error_label').append($('<div>').html(xhr.status + ' : ' + thrownError));
-				$('#error_label').append($('<div>').html(xhr.responseText));
-			}
-		});
-	}
-	$(function(){
-		fetch();
-	});
+    $.ajaxSetup({
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    });
+    function fetch(){
+        $('#message_label').empty();
+        $.ajax({
+            type : "POST",
+            url  : "<?=base_url('travel/paket/fetch'); ?>",
+            dataType : "JSON",
+            data:{
+            },
+            success: function(data){
+                $('#error_label').empty();
+                //$('#entry_count').text('Entri ' + data.start + ' hingga ' + data.end + ' dari ' + data.count + ' entri.');
+                $('#tbody_main').empty();
+                let len = data.entries.length;
+                for(i=0; i < len; ++i){
+                    let entry = data.entries[i];
+                    $('#tbody_main').append(entry);
+                }
+                $("#dataTablePaket").DataTable();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('#error_label').append($('<div>').html(xhr.status + ' : ' + thrownError));
+                $('#error_label').append($('<div>').html(xhr.responseText));
+            }
+        });
+    }
+    $(function(){
+        fetch();
+    });
 </script>
