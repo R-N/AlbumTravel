@@ -452,8 +452,9 @@ $config['sess_regenerate_destroy'] = TRUE;
 $config['cookie_prefix']    = '';
 $config['cookie_domain']    = $domain;
 $config['cookie_path']      = '/'.$path;
-$config['cookie_secure']    = FALSE;
+$config['cookie_secure']    = TRUE;
 $config['cookie_httponly']  = FALSE;
+$config['cookie_samesite']  = 'None';
 
 /*
 |--------------------------------------------------------------------------
