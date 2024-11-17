@@ -69,7 +69,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     $(function(){
         let button=$("#addPageButton");

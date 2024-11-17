@@ -36,7 +36,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     var halaman = {};
     var selectedHalaman = null;

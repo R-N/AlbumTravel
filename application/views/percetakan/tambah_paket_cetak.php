@@ -56,7 +56,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     $('#tanggal-field').datepicker({
         uiLibrary: 'bootstrap4',

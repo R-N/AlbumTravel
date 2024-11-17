@@ -15,7 +15,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     function refreshPreviewHalaman(callback=null){
         $.ajax({

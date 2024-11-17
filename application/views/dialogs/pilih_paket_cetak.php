@@ -21,7 +21,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     var paketCetak = {};
     function onSelectPaketCetak(idPaketCetak){

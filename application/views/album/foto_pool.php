@@ -6,7 +6,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     function fetch_foto_pool(id_foto_pool, id_album, callback=null){
         $.ajax({

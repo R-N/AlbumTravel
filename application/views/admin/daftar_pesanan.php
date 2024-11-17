@@ -53,7 +53,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     function onPilihPaketCetak(idAlbum, idPaketCetak){
         $('#message_label').empty();

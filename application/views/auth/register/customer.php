@@ -68,7 +68,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     $('#btn_register').on('click',function(){
         $('#message_label').empty();

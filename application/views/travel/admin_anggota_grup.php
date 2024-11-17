@@ -55,7 +55,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     function terima_anggota(id_anggota_grup){
         $('#message_label').empty();

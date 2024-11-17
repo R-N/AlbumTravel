@@ -71,7 +71,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     $(function(){
         $('#addAlbumButton').click(function(){

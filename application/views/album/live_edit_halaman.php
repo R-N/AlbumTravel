@@ -10,7 +10,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     function refreshLiveEditHalaman(callback=null){
         $.ajax({

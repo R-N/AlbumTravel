@@ -23,7 +23,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     var pilihPaketCetakCallback = null;
     var percetakan = {};

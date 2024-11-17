@@ -28,7 +28,8 @@
     $.ajaxSetup({
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
-        }
+        },
+        async: false,
     });
     function previewHalaman(id_album, nomor_halaman){
         $.ajax({
