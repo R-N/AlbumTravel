@@ -1,8 +1,5 @@
 <?php
 
-
-require_once(APPPATH."/helper/vercel_helper.php");
-
 #[\AllowDynamicProperties]
 class MY_DB_postgre_driver extends CI_DB_postgre_driver {
     /**
