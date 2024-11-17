@@ -410,9 +410,9 @@ $config['encryption_key'] = hex2bin('b8bc4dacca2d4e90bd6f5d78a5f7ca4161e00f81349
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 0;
+$config['sess_expiration'] = 720;
 $config['sess_expire_on_close'] = FALSE;
-$config['sess_encrypt_cookie']  = FALSE; 
+$config['sess_encrypt_cookie']  = TRUE; 
 $config['sess_use_database']    = FALSE;
 $config['sess_table_name']      = 'ci_sessions';
 if (ENVIRONMENT == "production"){
@@ -426,10 +426,10 @@ if (ENVIRONMENT == "production"){
 if (!is_dir($config['sess_save_path']) || !is_writable($config['sess_save_path'])){
     $config['sess_save_path'] = NULL;
 }
-$config['sess_match_ip'] = FALSE;
+$config['sess_match_ip'] = TRUE;
 $config['sess_match_useragent'] = FALSE;
-$config['sess_time_to_update'] = 60000;
-$config['sess_regenerate_destroy'] = TRUE;
+$config['sess_time_to_update'] = 300;
+$config['sess_regenerate_destroy'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
