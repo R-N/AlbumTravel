@@ -64,6 +64,7 @@ class General_controller extends HungNG_CI_Base_Controllers {
     
     
     protected function load_header($title=''){
+        session_write_close();
         $data = array(
             'title' => $title
         );
@@ -143,6 +144,7 @@ class General_controller extends HungNG_CI_Base_Controllers {
     }
     
     protected function load_view($view, $title='', $data=array()){
+        session_write_close();
         $this->load_header($title);
         $this->load->view($view, $data);
         $this->load_footer();
@@ -161,6 +163,7 @@ class General_controller extends HungNG_CI_Base_Controllers {
     }
     
     protected function load_notice($title, $notice_title, $notice_text){
+        session_write_close();
         $this->load_view('notice', $title, array(
             'notice_title' => $notice_title,
             'notice_text' => $notice_text
@@ -172,6 +175,7 @@ class General_controller extends HungNG_CI_Base_Controllers {
     }
     
     protected function fail($error='', $redirect=null){
+        session_write_close();
         $result = array('result'=>'FAIL');
         $result['error'] = $error;
         $result['redirect']=$redirect;
@@ -183,6 +187,7 @@ class General_controller extends HungNG_CI_Base_Controllers {
     }
     
     protected function ok($message='', $redirect=null){
+        session_write_close();
         $result = array('result'=>'OK');
         $result['message'] = $message;
         $result['redirect']=$redirect;

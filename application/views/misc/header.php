@@ -28,7 +28,7 @@ $this->view('dialogs/confirmation2');
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         },
-        async: false,
+        async: true,
     });
     function logout(){
         $.ajax({
