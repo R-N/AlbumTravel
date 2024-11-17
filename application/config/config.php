@@ -430,8 +430,8 @@ if (!is_dir($config['sess_save_path']) || !is_writable($config['sess_save_path']
     $config['sess_save_path'] = NULL;
 }
 $config['sess_match_ip'] = FALSE;
-$config['sess_match_ip'] = TRUE;
-$config['sess_match_useragent'] = TRUE;
+// $config['sess_match_ip'] = TRUE;
+// $config['sess_match_useragent'] = TRUE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
