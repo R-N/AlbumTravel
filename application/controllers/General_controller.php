@@ -34,7 +34,7 @@ class General_controller extends HungNG_CI_Base_Controllers {
     
     protected function get_session(){
         if(isset($this->session->userdata['session'])){
-            consoleLog($this->session->userdata);
+            //consoleLog($this->session->userdata);
             return $this->session->userdata['session'];
         }else{
             session_write_close();
