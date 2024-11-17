@@ -42,12 +42,6 @@
   </div>
 </div>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     var templateGroups = {};
     var templates = {};
     var selectedTemplateGroup = 0;

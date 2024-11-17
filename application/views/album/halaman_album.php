@@ -25,12 +25,6 @@
     ?>
 </section>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     function refreshPreviewHalaman(id_halaman){
         $.ajax({
             url: "<?=base_url("album/fetch_foto_halaman")?>",

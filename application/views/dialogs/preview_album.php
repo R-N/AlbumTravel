@@ -33,12 +33,6 @@
   </div>
 </div>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     var halaman = {};
     var selectedHalaman = null;
     function previewAlbum(id_album){

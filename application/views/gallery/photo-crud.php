@@ -3,12 +3,6 @@
 
 </ul>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     function fetch_foto(id_photo_crud, id_paket_travel){
         $.ajax({
             type : "POST",

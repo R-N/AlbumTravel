@@ -31,12 +31,6 @@
     </div>
 </div>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     function fetch(page=1, search=null){
         $('#message_label').empty();
         $.ajax({

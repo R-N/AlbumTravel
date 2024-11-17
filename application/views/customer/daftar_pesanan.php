@@ -65,12 +65,6 @@
   <!-- /#wrapper -->
 
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     function fetch(){
         $('#message_label').empty();
         $.ajax({

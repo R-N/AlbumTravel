@@ -18,12 +18,6 @@
   </div>
 </div>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     var paketCetak = {};
     function onSelectPaketCetak(idPaketCetak){
         pilihPaketCetakCallback(idPaketCetak);

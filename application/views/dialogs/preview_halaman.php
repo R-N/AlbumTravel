@@ -25,12 +25,6 @@
   </div>
 </div>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     function previewHalaman(id_album, nomor_halaman){
         $.ajax({
             url: "<?=base_url("album/preview_halaman")?>",

@@ -27,12 +27,6 @@
     </div>
 </div>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     function join_grup(id_paket_travel){
         $('#message_label').empty();
         $.ajax({

@@ -91,12 +91,6 @@
         <?php
         }
         ?>
-        $.ajaxSetup({
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            async: false,
-        });
         $.ajax({
             type: "POST",
             dataType: "JSON",

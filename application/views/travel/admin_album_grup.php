@@ -67,13 +67,6 @@
     <a class="btn btn-primary block float-right m-2 text-white" id="addAlbumButton">Tambah</a>
 </div>
 <script>
-    
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     $(function(){
         $('#addAlbumButton').click(function(){
             askInput("Buat Album", "", "Masukkan judul album", add_album);

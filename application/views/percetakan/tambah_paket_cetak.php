@@ -53,12 +53,6 @@
 </div>
 
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     $('#tanggal-field').datepicker({
         uiLibrary: 'bootstrap4',
         format: "yyyy-mm-dd"

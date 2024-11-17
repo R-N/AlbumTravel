@@ -53,12 +53,6 @@
 </div>
 
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        async: false,
-    });
     $('#btn_login').on('click',function(){
         let username = $('#username_field').val();
         let password = $('#password_field').val();
