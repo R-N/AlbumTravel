@@ -513,7 +513,7 @@ $config['csrf_cookie_name'] = sha1(
     ENVIRONMENT . 'CodeIgniter_v3_skeleton_i0ewkTGviUJ53ZU4vcXn31zamsJOtXns_csrf_cookie_name'
 );
 $config['csrf_expire'] = 7200;
-$config['csrf_regenerate'] = TRUE;
+$config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array();
 
 /*
