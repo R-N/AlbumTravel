@@ -17,6 +17,7 @@ class Admin extends General_controller{
     }
     
     public function pesanan($id_album=''){
+        session_write_close();
         if($id_album==null || $id_album==''){
             $this->load_view("admin/daftar_pesanan", "Daftar Pesanan");
         }else{
@@ -26,7 +27,7 @@ class Admin extends General_controller{
     }
     
     public function fetch_percetakan(){
-        
+        session_write_close();
         $data = $this->percetakan_model->fetch_percetakan();
         
         $len = count($data['entries']);
@@ -44,6 +45,7 @@ class Admin extends General_controller{
         echo json_encode($data);
     }
     public function fetch_pesanan_rinci(){
+        session_write_close();
         $id_album = $this->input->post("id_album");
         $data = $this->album_model->fetch_pesanan_rinci($id_album);
         $data['raw_entries'] = $data['entries'];
@@ -62,6 +64,7 @@ class Admin extends General_controller{
         echo json_encode($data);
     }
     public function fetch_paket_cetak(){
+        session_write_close();
         $id_percetakan = $this->input->post("id_percetakan");
         $data = $this->percetakan_model->fetch_paket_cetak_public($id_percetakan);
         $data['raw_entries'] = $data['entries'];
@@ -80,7 +83,7 @@ class Admin extends General_controller{
         echo json_encode($data);
     }
     public function fetch_pesanan(){
-        
+        session_write_close();
         $data = $this->album_model->fetch_pesanan_admin();
         $data['raw_entries'] = $data['entries'];
         
@@ -98,6 +101,7 @@ class Admin extends General_controller{
         echo json_encode($data);
     }
     public function set_paket_cetak(){
+        session_write_close();
         $id_album = $this->input->post("id_album");
         $id_paket_cetak = $this->input->post("id_paket_cetak");
         

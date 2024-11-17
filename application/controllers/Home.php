@@ -9,9 +9,11 @@ class Home extends General_controller{
     public function index(){
         $this->get_session();
         $peran = $this->get_peran_pengguna();
+        session_write_close();
         $this->home($peran);
     }
     public function home($peran){
+        session_write_close();
         if($peran == 1){
             $this->home_customer();
         }else if ($peran == 2){
@@ -24,6 +26,7 @@ class Home extends General_controller{
     }
     
     function home_admin(){
+        session_write_close();
         $this->load_view('admin/front');
     }
     
