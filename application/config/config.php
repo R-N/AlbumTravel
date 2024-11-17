@@ -426,7 +426,6 @@ if (ENVIRONMENT == "production"){
 if (!is_dir($config['sess_save_path']) || !is_writable($config['sess_save_path'])){
     $config['sess_save_path'] = NULL;
 }
-echo $config['sess_save_path'];
 $config['sess_match_ip'] = FALSE;
 $config['sess_match_useragent'] = FALSE;
 $config['sess_time_to_update'] = 60000;
