@@ -2,12 +2,12 @@
 
 #[\AllowDynamicProperties]
 class MY_Session extends CI_Session {
-    public function destroy()
+    public function destroy($session_id)
     {
 
         if ( ! $this->CI->input->is_ajax_request())
         {
-            parent::destroy();
+            parent::destroy($session_id);
         }
     }
     
@@ -18,19 +18,22 @@ class MY_Session extends CI_Session {
      *
      * @return  void
      */
-    public function update()
+    public function write($session_id, $session_data)
     {
         if ($this->CI->input->is_ajax_request())
         {
             return;
         }
+
+        var_dump ($this->userdata);
+
         // We only update the session every five minutes by default
         if (($this->userdata['last_activity'] + $this->sess_time_to_update) >= $this->now)
         {
             return;
         }
         
-        return parent::update();
+        return parent::write($session_id, $session_data);
 
         // _set_cookie() will handle this for us if we aren't using database sessions
         // by pushing all userdata to the cookie.
