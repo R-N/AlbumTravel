@@ -28,10 +28,16 @@ class Account_model extends General_model {
     
     public function login($data) {
         $sql = '
-        SELECT 
-            id_pengguna, peran_pengguna, username, status_akun
-        FROM AKUN 
-        WHERE username=? AND (password=? OR password=?)';
+            SELECT 
+                id_pengguna, 
+                peran_pengguna, 
+                username, 
+                status_akun
+            FROM AKUN 
+            WHERE 
+                username=? 
+                AND (password=? OR password=?)
+        ';
         $query = $this->db->query($sql, array(
             $data['username'],
             $this->hash_password($data['password']),
