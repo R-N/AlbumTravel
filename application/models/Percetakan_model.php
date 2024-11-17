@@ -14,8 +14,8 @@ class Percetakan_model extends General_model {
         $sql = '
             SELECT count(*) AS count 
             FROM 
-                PERCETAKAN PC, 
-                PAKET_CETAK PCT 
+                percetakan PC, 
+                paket_cetak PCT 
             WHERE 
                 PC.id_pengguna=? 
                 AND PC.id_percetakan=PCT.id_percetakan
@@ -39,7 +39,7 @@ class Percetakan_model extends General_model {
                 harga_dasar, 
                 harga_per_halaman 
             FROM 
-                PERCETAKAN PC, 
+                percetakan PC, 
                 PAKET_cetak PCT 
             WHERE 
                 PC.id_pengguna=? 
@@ -85,7 +85,7 @@ class Percetakan_model extends General_model {
                 harga_per_halaman, 
                 ringkasan_paket_cetak 
             FROM 
-                PERCETAKAN PC, 
+                percetakan PC, 
                 PAKET_cetak PCT 
             WHERE 
                 PC.id_percetakan=PCT.id_percetakan 
@@ -109,7 +109,7 @@ class Percetakan_model extends General_model {
         $id_pengguna = $this->get_id_pengguna();
         $sql1 = '
             SELECT PC.id_percetakan 
-            FROM PERCETAKAN PC 
+            FROM percetakan PC 
             WHERE PC.id_pengguna=?
         ';
         $query = $this->db->query($sql1, array($id_pengguna));
@@ -124,8 +124,8 @@ class Percetakan_model extends General_model {
         $sql = "
             SELECT PCT.id_paket_cetak 
             FROM 
-                PAKET_cetak PCT, 
-                PERCETAKAN PC 
+                paket_cetak PCT, 
+                percetakan PC 
             WHERE 
                 PCT.id_paket_cetak=? 
                 AND PCT.id_percetakan=PC.id_percetakan 
@@ -148,7 +148,7 @@ class Percetakan_model extends General_model {
                 PC.telepon_percetakan, 
                 PC.email_percetakan, 
                 PC.ringkasan_percetakan 
-            FROM PERCETAKAN PC 
+            FROM percetakan PC 
             ORDER BY PC.nama_percetakan ASC
         ";
         $query = $this->db->query($sql);
@@ -168,8 +168,8 @@ class Percetakan_model extends General_model {
                 PC.id_percetakan, 
                 PC.nama_percetakan 
             FROM 
-                PERCETAKAN PC, 
-                PAKET_cetak PCT 
+                percetakan PC, 
+                paket_cetak PCT 
             WHERE 
                 PC.id_pengguna=? 
                 AND PC.id_percetakan=PCT.id_percetakan
