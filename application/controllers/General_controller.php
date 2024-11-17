@@ -37,6 +37,7 @@ class General_controller extends HungNG_CI_Base_Controllers {
             consoleLog($this->session->userdata);
             return $this->session->userdata['session'];
         }else{
+            session_write_close();
             redirect(base_url('login'));
         }
     }
