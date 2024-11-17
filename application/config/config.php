@@ -413,7 +413,7 @@ $config['sess_cookie_name'] = 'ci_session';
 $config['sess_cookie_name'] = sha1(
     'Session_Cookie_Name_HungNG_CodeIgniter_v3_skeleton_tVdOt99RreiaULriXOnxflwCzehBxQNc'
 );
-$config['sess_expiration'] = 7200;
+$config['sess_expiration'] = 0;
 $config['sess_expire_on_close'] = FALSE;
 $config['sess_encrypt_cookie']  = TRUE; 
 $config['sess_use_database']    = FALSE;
@@ -430,9 +430,9 @@ if (!is_dir($config['sess_save_path']) || !is_writable($config['sess_save_path']
     $config['sess_save_path'] = NULL;
 }
 $config['sess_match_ip'] = FALSE;
-// $config['sess_match_ip'] = TRUE;
-// $config['sess_match_useragent'] = TRUE;
-$config['sess_time_to_update'] = 300;
+$config['sess_match_ip'] = TRUE;
+$config['sess_match_useragent'] = TRUE;
+$config['sess_time_to_update'] = 1000;
 $config['sess_regenerate_destroy'] = FALSE;
 
 /*
